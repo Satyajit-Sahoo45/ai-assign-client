@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import HackSection from './Components/HackSection';
+import StatsSection from './Components/StatsSection';
+import HeroSection from './Components/HeroSection';
+import Header from './Components/Header';
+import ChallengesSection from './Components/ChallengesSection';
+import ChallengeForm from './Components/ChallengeForm';
+import Details from './Components/Details';
+import { Toaster } from 'react-hot-toast';
+import AuthProvider from './Provider/AuthProvider';
 
-function App() {
+const HomePage = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <HeroSection />
+      <StatsSection />
+      <HackSection />
+      <ChallengesSection />
     </div>
   );
-}
+};
+
+const App = () => {
+  return (
+    <>
+      <Router>
+        <Header /> {/* Header remains visible on all routes */}
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/hackathon/:id" element={<AuthProvider> <Details /> </AuthProvider>} />
+
+          <Route path="/create-hackathon" element={<AuthProvider><ChallengeForm /></AuthProvider>} />
+        </Routes>
+      </Router>
+      <Toaster />
+    </>
+  );
+};
 
 export default App;
