@@ -4,7 +4,7 @@ import Vector from "../assets/icons/Vector.svg"
 import Group from "../assets/icons/carbon_notebook-reference.svg"
 import IdentityCard from "../assets/icons/IdentificationCard.svg"
 
-const HackSection = () => {
+const Community = () => {
     const reasons = [
         {
             title: "Prove your skills",
@@ -44,4 +44,4 @@ const HackSection = () => {
     );
 };
 
-export default HackSection;
+export default Community;

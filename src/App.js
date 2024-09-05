@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import HackSection from './Components/HackSection';
 import StatsSection from './Components/StatsSection';
 import HeroSection from './Components/HeroSection';
 import Header from './Components/Header';
@@ -9,13 +8,14 @@ import ChallengeForm from './Components/ChallengeForm';
 import Details from './Components/Details';
 import { Toaster } from 'react-hot-toast';
 import AuthProvider from './Provider/AuthProvider';
+import Community from './Components/Community';
 
 const HomePage = () => {
   return (
     <div>
       <HeroSection />
       <StatsSection />
-      <HackSection />
+      <Community />
       <ChallengesSection />
     </div>
   );

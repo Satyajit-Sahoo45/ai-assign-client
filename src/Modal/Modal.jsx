@@ -1,16 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Upload from '../assets/icons/bxs_cloud-upload.svg'
-import Gal from '../assets/icons/bi_image-fill.svg'
+import Upload from '../assets/icons/bxs_cloud-upload.svg';
+import Gal from '../assets/icons/bi_image-fill.svg';
 import { ArrowRight } from 'lucide-react';
 
 const Modal = ({ isOpen, loadingUpdate, onClose, formData, handleChange, handleSubmit, handleFileChange, loading }) => {
     if (!isOpen) return null;
 
-    return ReactDOM.createPortal(
+    return (
         <div className="fixed inset-0 flex items-center justify-end z-50">
             <div className="fixed inset-0 bg-black opacity-50" onClick={onClose}></div>
-            <div className="relative bg-white w-full max-w-md h-screen p-8 overflow-auto transform transition-transform duration-300 ease-in-out" style={{ transform: isOpen ? 'translateX(0)' : 'translateX(100%)' }}>
+            <div className="relative bg-white w-full max-w-md h-screen p-8 overflow-auto custom-scrollbar transform transition-transform duration-300 ease-in-out" style={{ transform: isOpen ? 'translateX(0)' : 'translateX(100%)' }}>
                 <button onClick={onClose} className="absolute top-4 right-4 text-gray-600 hover:text-gray-900">
                     &times;
                 </button>
@@ -55,7 +54,7 @@ const Modal = ({ isOpen, loadingUpdate, onClose, formData, handleChange, handleS
                         <textarea
                             id="description"
                             rows="4"
-                            className="w-full border border-gray-300 p-2 rounded-md"
+                            className="w-full border border-gray-300 p-2 rounded-md custom-scrollbar"
                             placeholder="Enter description"
                             value={formData.description}
                             onChange={handleChange}
@@ -121,8 +120,7 @@ const Modal = ({ isOpen, loadingUpdate, onClose, formData, handleChange, handleS
                     </button>
                 </form>
             </div>
-        </div>,
-        document.body
+        </div>
     );
 };
 
