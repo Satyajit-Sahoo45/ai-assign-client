@@ -78,7 +78,7 @@ const Modal = ({ isOpen, loadingUpdate, onClose, formData, handleChange, handleS
                                     <img
                                         src={formData?.image?.url || formData?.image}
                                         alt=""
-                                        className="w-1/3 h-32 object-cover rounded-md mb-2"
+                                        className="w-1/1 h-32 object-cover rounded-md mb-2"
                                     />
                                     <span
                                         className="flex gap-2 items-center text-green-600 hover:underline"
