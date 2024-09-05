@@ -6,7 +6,6 @@ import { ArrowRight } from 'lucide-react';
 
 const Modal = ({ isOpen, loadingUpdate, onClose, formData, handleChange, handleSubmit, handleFileChange, loading }) => {
     if (!isOpen) return null;
-    console.log(formData)
 
     return ReactDOM.createPortal(
         <div className="fixed inset-0 flex items-center justify-end z-50">
