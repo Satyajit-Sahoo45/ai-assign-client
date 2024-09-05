@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Upload from '../assets/icons/bxs_cloud-upload.svg'
+import Gal from '../assets/icons/bi_image-fill.svg'
+import { ArrowRight } from 'lucide-react';
 
 const Modal = ({ isOpen, loadingUpdate, onClose, formData, handleChange, handleSubmit, handleFileChange, loading }) => {
     if (!isOpen) return null;
+    console.log(formData)
 
     return ReactDOM.createPortal(
         <div className="fixed inset-0 flex items-center justify-end z-50">
@@ -32,7 +35,7 @@ const Modal = ({ isOpen, loadingUpdate, onClose, formData, handleChange, handleS
                             type="date"
                             id="startDate"
                             className="w-full border border-gray-300 p-2 rounded-md"
-                            value={formData.startDate}
+                            value={new Date(formData.startDate).toISOString().slice(0, 10)}
                             onChange={handleChange}
                         />
                     </div>
@@ -43,7 +46,7 @@ const Modal = ({ isOpen, loadingUpdate, onClose, formData, handleChange, handleS
                             type="date"
                             id="endDate"
                             className="w-full border border-gray-300 p-2 rounded-md"
-                            value={formData.endDate}
+                            value={new Date(formData.endDate).toISOString().slice(0, 10)}
                             onChange={handleChange}
                         />
                     </div>
@@ -71,11 +74,19 @@ const Modal = ({ isOpen, loadingUpdate, onClose, formData, handleChange, handleS
                         />
                         <label htmlFor="file" className='cursor-pointer'>
                             {formData?.image ? (
-                                <img
-                                    src={formData?.image?.url || formData?.image}
-                                    alt=""
-                                    className="h-40 w-40 object-cover"
-                                />
+                                <div className="p-2 bg-[#F8F9FD]">
+                                    <img
+                                        src={formData?.image?.url || formData?.image}
+                                        alt=""
+                                        className="w-1/3 h-32 object-cover rounded-md mb-2"
+                                    />
+                                    <span
+                                        className="flex gap-2 items-center text-green-600 hover:underline"
+                                    >
+                                        <img src={Gal} className='h-4 w-4' alt='' />
+                                        Change image <ArrowRight size={16} />
+                                    </span>
+                                </div>
                             ) : (
                                 <span className="text-[#666666] border-2 w-fit inline-flex border-[#D9D9D9] rounded-md py-1 px-6 items-center gap-2">
                                     Upload
@@ -90,7 +101,7 @@ const Modal = ({ isOpen, loadingUpdate, onClose, formData, handleChange, handleS
                         <select
                             id="level"
                             className="w-full border border-gray-300 p-2 rounded-md"
-                            value={formData.levelType}
+                            value={formData.level}
                             onChange={handleChange}
                         >
                             <option value="easy">Easy</option>

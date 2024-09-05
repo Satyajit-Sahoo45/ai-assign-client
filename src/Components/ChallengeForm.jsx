@@ -3,6 +3,8 @@ import axios from 'axios';
 import Upload from "../assets/icons/bxs_cloud-upload.svg"
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
+import Gal from '../assets/icons/bi_image-fill.svg'
 
 const ChallengeForm = () => {
     const [loading, setLoading] = useState(false)
@@ -61,9 +63,7 @@ const ChallengeForm = () => {
                 },
             });
 
-            console.log(response, "responseresponse")
-
-            response.status === 200 && toast.success("created hackathon 😊")
+            response.status === 201 && toast.success("created hackathon 😊")
             navigate("/")
         } catch (error) {
             toast.error('Error creating hackathon ❗');
@@ -98,13 +98,17 @@ const ChallengeForm = () => {
                         Start Date
                     </label>
                     <input
-                        type="date"
+                        type={formData.startDate ? "date" : "text"}  // Toggle between date and text
                         id="startDate"
                         className="w-full border border-gray-300 p-2 rounded-md"
+                        placeholder="dd-mm-yyyy"  // Placeholder for the text input
                         value={formData.startDate}
+                        onFocus={(e) => (e.target.type = "date")}  // Switch to date input on focus
+                        onBlur={(e) => !formData.startDate && (e.target.type = "text")}  // Revert to text input if empty
                         onChange={handleChange}
                     />
                 </div>
+
 
                 <div className="mb-4">
                     <label htmlFor="endDate" className="block text-gray-700 font-medium mb-2">
@@ -144,11 +148,20 @@ const ChallengeForm = () => {
                     />
                     <label htmlFor="file" className='cursor-pointer'>
                         {formData?.image ? (
-                            <img
-                                src={formData?.image}
-                                alt=""
-                                className="h-40 w-40 object-cover"
-                            />
+                            <div className="p-2 bg-[#F8F9FD]">
+
+                                <img
+                                    src={formData?.image}
+                                    alt=""
+                                    className="w-1/3 h-32 object-cover rounded-md mb-2"
+                                />
+                                <span
+                                    className="flex gap-2 items-center text-green-600 hover:underline"
+                                >
+                                    <img src={Gal} className='h-4 w-4' alt='' />
+                                    Change image <ArrowRight size={16} />
+                                </span>
+                            </div>
                         ) : (
                             <span className="text-[#666666] border-2 w-fit inline-flex border-[#D9D9D9] rounded-md py-1 px-6 items-center gap-2">
                                 Upload

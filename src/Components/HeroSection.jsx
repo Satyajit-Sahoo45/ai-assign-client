@@ -5,8 +5,8 @@ const HeroSection = () => {
     return (
         <section className="bg-[#003145] text-white py-10 sm:py-20 px-16 flex flex-col sm:flex-row justify-center items-center">
             <div className="w-full sm:w-full flex flex-col md:items-start space-y-8">
-                <div className="flex items-center space-x-4">
-                    <div className="bg-green-500 h-12 sm:h-16 w-2"></div>
+                <div className="flex items-center md:space-x-4">
+                    <div className="bg-green-500 hidded md:block md:h-20 w-2"></div>
                     <h1 className="text-2xl sm:text-4xl font-bold">
                         Accelerate Innovation with Global AI Challenges
                     </h1>
@@ -16,7 +16,7 @@ const HeroSection = () => {
                 </p>
                 {
                     JSON.parse(localStorage.getItem("user"))?.role === "ADMIN" && (
-                        <a href="/create-hackathon" className="bg-white text-blue-900 font-semibold py-2 px-4 rounded">
+                        <a href="/create-hackathon" className="bg-white text-blue-900 font-semibold py-2 px-4 rounded w-fit">
                             Create Challenge
                         </a>
                     )

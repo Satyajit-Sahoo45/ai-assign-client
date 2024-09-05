@@ -83,7 +83,7 @@ const Details = () => {
                     'Authorization': `Bearer ${token}`,
                 },
             });
-            response.status === 200 && toast('Hackathon updated successfully');
+            response.status === 200 && toast.success('Hackathon updated successfully');
             setIsModalOpen(false);
 
         } catch (error) {
@@ -103,7 +103,7 @@ const Details = () => {
                     'Authorization': `Bearer ${token}`,
                 },
             });
-            response.status === 204 && toast('Hackathon deleted successfully');
+            response.status === 204 && toast.success('Hackathon deleted successfully');
             navigate("/")
         } catch (error) {
             toast.error(error.message)
@@ -125,48 +125,48 @@ const Details = () => {
     return (
         <div className="min-h-screen">
             <div className="w-full bg-[#0E3A5E] p-8">
-                <div className="flex flex-col justify-start gap-6 p-12">
+                <div className="flex flex-col justify-start gap-6 p-4 sm:p-6 md:p-12">
                     <span className="bg-[#FFD54F] text-[#0E3A5E] inline-flex justify-center items-center gap-2 w-fit rounded-lg px-4 py-2 text-sm font-semibold">
                         <Clock size={14} /> Starts on {new Date(hackathon.startDate).toLocaleDateString()} at {new Date(hackathon.startDate).toLocaleTimeString()}
                     </span>
-                    <h1 className="text-3xl font-bold text-white">
+                    <h1 className="text-2xl sm:text-3xl font-bold text-white">
                         {hackathon.name}
                     </h1>
-                    <p className="text-white text-sm mb-4">
+                    <p className="text-white text-sm sm:text-base mb-4">
                         {hackathon.description}
                     </p>
-                    <div className="bg-white py-2 px-6 w-fit flex gap-2 items-center justify-center rounded-lg text-sm font-semibold">
+                    <div className="bg-white py-2 px-4 sm:px-6 w-fit flex gap-2 items-center justify-center rounded-lg text-sm font-semibold">
                         <img src={level} alt="level" className="h-4 w-4 text-black" /> {hackathon.level}
                     </div>
                 </div>
             </div>
 
-            <div className="w-full bg-white shadow-md flex justify-between px-20 relative items-center">
-                <div className="relative py-6 font-bold text-lg">
-                    <span className="absolute bottom-0 left-0 w-full h-[6px] bg-[#388E3C] rounded-md"></span>
+            <div className="w-full bg-white shadow-md flex flex-col-reverse sm:flex-row justify-between px-4 sm:px-10 md:px-20 relative items-center">
+                <div className="relative py-4 sm:py-6 font-bold text-base sm:text-lg">
+                    <span className="absolute bottom-0 left-0 w-full h-[4px] sm:h-[6px] bg-[#388E3C] rounded-md"></span>
                     Overview
                 </div>
 
-                {
-                    hackathon?.organizerId === JSON.parse(localStorage.getItem("user"))?.id && (
-                        <div className="flex justify-end space-x-4">
-                            <button onClick={() => setIsModalOpen(true)} className="bg-[#4CAF50] text-white px-6 py-2 rounded-lg hover:bg-[#388E3C]">
-                                Edit
-                            </button>
-                            <button className="bg-white text-[#DC1414] border-2 border-[#DC1414] px-6 py-2 rounded-lg" onClick={handleDelete}>
-                                {loadingDelete ? <div className="flex space-x-2">
+                {hackathon?.organizerId === JSON.parse(localStorage.getItem("user"))?.id && (
+                    <div className="flex flex-col sm:flex-row justify-end space-y-4 sm:space-y-0 sm:space-x-4 mt-4 sm:mt-0">
+                        <button onClick={() => setIsModalOpen(true)} className="bg-[#4CAF50] text-white px-4 sm:px-6 py-2 rounded-lg hover:bg-[#388E3C]">
+                            Edit
+                        </button>
+                        <button className="bg-white text-[#DC1414] border-2 border-[#DC1414] px-4 sm:px-6 py-2 rounded-lg" onClick={handleDelete}>
+                            {loadingDelete ? (
+                                <div className="flex space-x-2">
                                     <div className="w-2.5 h-2.5 bg-blue-500 rounded-full animate-pulse animation-delay-0"></div>
                                     <div className="w-2.5 h-2.5 bg-blue-500 rounded-full animate-pulse animation-delay-200"></div>
                                     <div className="w-2.5 h-2.5 bg-blue-500 rounded-full animate-pulse animation-delay-400"></div>
-                                </div> : "Delete"}
-                            </button>
-                        </div>
-                    )
-                }
+                                </div>
+                            ) : "Delete"}
+                        </button>
+                    </div>
+                )}
             </div>
 
-            <div className="container mx-auto py-12 px-20">
-                <p className="text-[#0E3A5E] text-base mb-4">
+            <div className="container mx-auto py-8 sm:py-12 px-4 sm:px-10 md:px-20">
+                <p className="text-[#0E3A5E] text-sm sm:text-base mb-4">
                     {hackathon.description}
                 </p>
             </div>
@@ -182,6 +182,7 @@ const Details = () => {
                 loading={loading}
             />
         </div>
+
     );
 };
 
