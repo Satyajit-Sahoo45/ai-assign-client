@@ -34,7 +34,7 @@ const Details = () => {
                     endDate: response.data.endDate,
                     description: response.data.description,
                     image: response.data.image,
-                    levelType: response.data.levelType,
+                    level: response.data.level,
                 });
             } catch (err) {
                 toast.error(err.message);
@@ -70,6 +70,7 @@ const Details = () => {
         setLoadingUpdate(true);
 
         try {
+            console.log(formData, "Submit")
             const data = {
                 name: formData.name,
                 startDate: new Date(formData.startDate).toISOString(),
@@ -78,6 +79,7 @@ const Details = () => {
                 image: formData.image,
                 level: formData.level.toUpperCase(),
             }
+
             const response = await axios.put(`${process.env.REACT_APP_SERVER_URI}/update-hackathon/${id}`, data, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
