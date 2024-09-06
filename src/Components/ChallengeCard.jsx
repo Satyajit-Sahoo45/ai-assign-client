@@ -54,7 +54,7 @@ const ChallengeCard = ({ challenge }) => {
 
     return (
         <div className="bg-white text-blue-900 rounded-lg shadow-md flex flex-col text-center overflow-hidden">
-            <img src={challenge.image.url} alt={challenge.title} className="h-40 w-full object-cover" />
+            <img src={challenge.image.url} alt={challenge.title} className="h-40 w-full object-cover transition-transform duration-300 ease-in-out transform hover:scale-105" />
             <div className="p-6 pt-4 flex flex-col justify-center items-center w-full">
                 <div
                     className={`text-white py-1 px-4 rounded-md mb-2 inline-flex justify-center items-center w-fit ${status === "Upcoming" ? 'bg-[#e4cd8e]' :
